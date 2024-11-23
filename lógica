@@ -1,0 +1,56 @@
+package com.example.guylianvestscheduler
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.guylianvestscheduler.models.Appointment
+import com.example.guylianvestscheduler.services.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val nameInput = findViewById<EditText>(R.id.inputName)
+        val emailInput = findViewById<EditText>(R.id.inputEmail)
+        val phoneInput = findViewById<EditText>(R.id.inputPhone)
+        val dateInput = findViewById<EditText>(R.id.inputDate)
+        val timeInput = findViewById<EditText>(R.id.inputTime)
+        val clothingTypeInput = findViewById<EditText>(R.id.inputClothingType)
+        val sizeInput = findViewById<EditText>(R.id.inputSize)
+        val styleInput = findViewById<EditText>(R.id.inputStyle)
+        val submitButton = findViewById<Button>(R.id.btnSubmit)
+
+        submitButton.setOnClickListener {
+            val appointment = Appointment(
+                name = nameInput.text.toString(),
+                email = emailInput.text.toString(),
+                phone = phoneInput.text.toString(),
+                date = dateInput.text.toString(),
+                time = timeInput.text.toString(),
+                clothingType = clothingTypeInput.text.toString(),
+                size = sizeInput.text.toString(),
+                style = styleInput.text.toString()
+            )
+
+            RetrofitInstance.api.createAppointment(appointment).enqueue(object : Callback<Appointment> {
+                override fun onResponse(call: Call<Appointment>, response: Response<Appointment>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@MainActivity, "Agendamento realizado!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@MainActivity, "Erro ao realizar o agendamento.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Appointment>, t: Throwable) {
+                    Toast.makeText(this@MainActivity, "Falha na conexão: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+}

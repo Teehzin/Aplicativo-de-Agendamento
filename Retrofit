@@ -1,6 +1,6 @@
 package com.example.guylianvest.services
 
-import com.example.guylianvestscheduler.models.Appointment
+import com.example.guylianvest.models.Appointment
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -9,3 +9,22 @@ interface ApiService {
     @POST("/appointments")
     fun createAppointment(@Body appointment: Appointment): Call<Appointment>
 }
+
+
+package com.example.guylianvest.services
+
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+object RetrofitInstance {
+    private const val BASE_URL = "http://10.0.2.2:5000" // URL do servidor local para emulador Android
+
+    val api: ApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+}
+

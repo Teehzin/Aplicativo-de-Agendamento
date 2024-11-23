@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/inputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/inputEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/inputPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/inputDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Data (YYYY-MM-DD)"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/inputTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hora (HH:MM)"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/inputClothingType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tipo de Roupa"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tamanho"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Estilo"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agendar" />
+</LinearLayout>
